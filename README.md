@@ -59,8 +59,8 @@ final: prev: {
     src = prev.fetchFromGitHub {
       owner = "dj95";
       repo = pname;
-      rev = "320d208c2660135ab2440a7d58db8859a35e29f7";
-      sha256 = "sha256-rvkbVPd5pWat/oZDoHOH4Pr3uqpkWY0ixTZGG0Kgvuk=";
+      rev = "f2c811652ab824616fb48cdbc8c78d1e8b83d8c0";
+      sha256 = "sha256-q6Cu0o5P3Tic3a3H9OOash6HbdJxciNhkKJQxd0WEaU=";
     };
 
     cargoSha256 = "sha256-Ay96cF3H3l7/yzU5ejOrK96T9WoEaIujiEM285qxMFU=";
