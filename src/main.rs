@@ -11,18 +11,19 @@ fn menu_config() {
     let env_name = common::select_or_create_dir("kubernetes/envs").unwrap();
 
     loop {
-        let choices: Vec<&str> = vec![
-            "kustomization.yaml",
-            "Secret",
-            "Ingress",
-            "MariaDB",
-            "Redis",
-            "Exit",
-        ];
-
-        let choice = Select::new("Which resource should be created?", choices)
-            .prompt()
-            .unwrap();
+        let choice = Select::new(
+            "Which resource should be created?",
+            vec![
+                "kustomization.yaml",
+                "Secret",
+                "Ingress",
+                "MariaDB",
+                "Redis",
+                "Exit",
+            ],
+        )
+        .prompt()
+        .unwrap();
 
         if choice == "Exit" {
             break;
@@ -63,11 +64,12 @@ fn menu_base() {
     let app_name = common::select_or_create_dir("kubernetes/base").unwrap();
 
     loop {
-        let choices: Vec<&str> = vec!["Deployment", "Ingress", "Service", "StatefulSet", "Exit"];
-
-        let choice = Select::new("Which resource should be created?", choices)
-            .prompt()
-            .unwrap();
+        let choice = Select::new(
+            "Which resource should be created?",
+            vec!["Deployment", "Ingress", "Service", "StatefulSet", "Exit"],
+        )
+        .prompt()
+        .unwrap();
 
         if choice == "Exit" {
             break;
@@ -107,11 +109,12 @@ fn add_resource_by_type(app_name: &str, typ: &str) {
 
 fn main() {
     loop {
-        let choices: Vec<&str> = vec!["Add resources", "Add configuration", "Exit"];
-
-        let choice = Select::new("What do you want to do?", choices)
-            .prompt()
-            .expect("no selection");
+        let choice = Select::new(
+            "What do you want to do?",
+            vec!["Add resources", "Add configuration", "Exit"],
+        )
+        .prompt()
+        .expect("no selection");
 
         match choice {
             "Add resources" => menu_base(),
