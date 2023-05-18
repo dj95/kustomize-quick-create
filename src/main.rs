@@ -1,12 +1,12 @@
 use inquire::Select;
 use render::Render;
-use resources::{base, envs};
+use resources::{base, common, envs};
 
 mod render;
 mod resources;
 
 fn menu_config() {
-    let env_name = envs::select_or_create().unwrap();
+    let env_name = common::select_or_create_dir("kubernetes/envs").unwrap();
 
     loop {
         let choices: Vec<&str> = vec!["kustomization.yaml", "Secret", "Ingress", "Exit"];
@@ -46,7 +46,7 @@ fn add_config_by_type(env_name: &str, typ: &str) -> anyhow::Result<()> {
 }
 
 fn menu_base() {
-    let app_name = base::select_or_create().unwrap();
+    let app_name = common::select_or_create_dir("kubernetes/base").unwrap();
 
     loop {
         let choices: Vec<&str> = vec!["Deployment", "Ingress", "Service", "StatefulSet", "Exit"];
