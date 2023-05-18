@@ -2,6 +2,8 @@ use inquire::Select;
 use render::Render;
 use resources::{base, common, envs};
 
+use crate::resources::mixins;
+
 mod render;
 mod resources;
 
@@ -9,7 +11,14 @@ fn menu_config() {
     let env_name = common::select_or_create_dir("kubernetes/envs").unwrap();
 
     loop {
-        let choices: Vec<&str> = vec!["kustomization.yaml", "Secret", "Ingress", "MariaDB", "Exit"];
+        let choices: Vec<&str> = vec![
+            "kustomization.yaml",
+            "Secret",
+            "Ingress",
+            "MariaDB",
+            "Redis",
+            "Exit",
+        ];
 
         let choice = Select::new("Which resource should be created?", choices)
             .prompt()
@@ -34,10 +43,14 @@ fn add_config_by_type(env_name: &str, typ: &str) -> anyhow::Result<()> {
         "kustomization.yaml" => envs::Kustomization::new()
             .render(env_name)
             .expect("cannot create kustomization"),
-        "MariaDB" => envs::MariaDB::parse_to_obj()
+        "MariaDB" => mixins::MariaDB::parse_to_obj()
             .unwrap()
             .render(env_name)
             .expect("cannot create mariadb"),
+        "Redis" => mixins::Redis::parse_to_obj()
+            .unwrap()
+            .render(env_name)
+            .expect("cannot create redis"),
         "Secret" => envs::Secret::parse_to_obj()
             .unwrap()
             .render(env_name)
