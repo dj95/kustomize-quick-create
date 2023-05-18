@@ -30,7 +30,7 @@ fn create(base_dir: &str) -> anyhow::Result<String> {
     return Ok(name);
 }
 
-fn list(base_dir: &str) -> Vec<String> {
+pub fn list(base_dir: &str) -> Vec<String> {
     if !Path::new(base_dir).exists() {
         return Vec::new();
     }

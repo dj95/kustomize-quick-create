@@ -27,8 +27,7 @@ fn add_config_by_type(env_name: &str, typ: &str) -> anyhow::Result<()> {
     use interactive_parse::InteractiveParseObj;
 
     match typ {
-        "kustomization.yaml" => envs::Kustomization::parse_to_obj()
-            .unwrap()
+        "kustomization.yaml" => envs::Kustomization::new()
             .render(env_name)
             .expect("cannot create kustomization"),
         "Secret" => envs::Secret::parse_to_obj()

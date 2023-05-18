@@ -1,7 +1,10 @@
+use inquire::Text;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
 use crate::render::Renderable;
+
+use super::common;
 
 #[derive(JsonSchema, Deserialize, Serialize, Debug)]
 pub struct Ingress {
@@ -19,12 +22,24 @@ impl Renderable for Ingress {
     }
 }
 
-#[derive(JsonSchema, Deserialize, Serialize, Debug)]
+#[derive(Deserialize, Serialize, Debug)]
 pub struct Kustomization {
     namespace: String,
+    files: Vec<String>,
 }
 
-// TODO: generate with resources from disk
+impl Kustomization {
+    pub fn new() -> Self {
+        let namespace = Text::new("namespace").prompt().unwrap();
+        let files = common::list("kubernetes/base");
+
+        return Self {
+            namespace,
+            files,
+        };
+    }
+}
+
 impl Renderable for Kustomization {
     fn get_file_name(&self, env_name: &str) -> String {
         return format!("kubernetes/envs/{}/kustomization.yaml", env_name);
