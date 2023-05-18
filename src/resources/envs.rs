@@ -33,10 +33,7 @@ impl Kustomization {
         let namespace = Text::new("namespace").prompt().unwrap();
         let files = common::list("kubernetes/base");
 
-        return Self {
-            namespace,
-            files,
-        };
+        return Self { namespace, files };
     }
 }
 
