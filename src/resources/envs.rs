@@ -48,6 +48,21 @@ impl Renderable for Kustomization {
 }
 
 #[derive(JsonSchema, Deserialize, Serialize, Debug)]
+pub struct MariaDB {
+    suffix: String,
+}
+
+impl Renderable for MariaDB {
+    fn get_file_name(&self, env_name: &str) -> String {
+        return format!("kubernetes/envs/{}/mariadb.yaml", env_name);
+    }
+
+    fn get_template(&self) -> String {
+        return include_str!("../../templates/envs/mariadb.yaml").to_string();
+    }
+}
+
+#[derive(JsonSchema, Deserialize, Serialize, Debug)]
 pub struct Secret {
     name: String,
 }

@@ -9,7 +9,7 @@ fn menu_config() {
     let env_name = common::select_or_create_dir("kubernetes/envs").unwrap();
 
     loop {
-        let choices: Vec<&str> = vec!["kustomization.yaml", "Secret", "Ingress", "Exit"];
+        let choices: Vec<&str> = vec!["kustomization.yaml", "Secret", "Ingress", "MariaDB", "Exit"];
 
         let choice = Select::new("Which resource should be created?", choices)
             .prompt()
@@ -27,17 +27,21 @@ fn add_config_by_type(env_name: &str, typ: &str) -> anyhow::Result<()> {
     use interactive_parse::InteractiveParseObj;
 
     match typ {
-        "kustomization.yaml" => envs::Kustomization::new()
-            .render(env_name)
-            .expect("cannot create kustomization"),
-        "Secret" => envs::Secret::parse_to_obj()
-            .unwrap()
-            .render(env_name)
-            .expect("cannot create secret"),
         "Ingress" => envs::Ingress::parse_to_obj()
             .unwrap()
             .render(env_name)
             .expect("cannot create ingress"),
+        "kustomization.yaml" => envs::Kustomization::new()
+            .render(env_name)
+            .expect("cannot create kustomization"),
+        "MariaDB" => envs::MariaDB::parse_to_obj()
+            .unwrap()
+            .render(env_name)
+            .expect("cannot create mariadb"),
+        "Secret" => envs::Secret::parse_to_obj()
+            .unwrap()
+            .render(env_name)
+            .expect("cannot create secret"),
         &_ => println!("wrong type selected"),
     }
 
