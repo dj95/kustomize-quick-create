@@ -21,7 +21,7 @@
 
 ### 🚀 Getting started
 
-Clone the repository and run `cargo install`. Then you should be able to call the wizard with `kustomize-quick-create`.
+Clone the repository and run `cargo install --path .`. Then you should be able to call the wizard with `kustomize-quick-create`.
 It will detect the kustomize deployment if it exists in the `kubernetes/` subdirectory of the present working dir.
 
 
