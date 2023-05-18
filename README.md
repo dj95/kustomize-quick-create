@@ -14,6 +14,9 @@
 </p>
 
 
+![Demo GIF of kqc in action](./example/demo.gif)
+
+
 ### 📦 Requirements
 
 - rust
