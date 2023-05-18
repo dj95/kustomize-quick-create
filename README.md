@@ -26,9 +26,9 @@
 
 ### 🚀 Getting started
 
-Clone the repository and make sure the dependencies are installed. You either need rust installed or nix installed.
+Clone the repository and make sure the dependencies are installed. You either need rust or nix installed.
 With nix use either `nix-shell` or `direnv allow` up to your preferences.
-After dependencies are available run `cargo install --path .` to build install the tool. 
+After dependencies are available run `cargo install --path .` to build and install the tool.
 
 Then you should be able to call the wizard with `kustomize-quick-create`.
 It will detect the kustomize deployment if it exists in the `kubernetes/` subdirectory of the present working dir.
