@@ -28,11 +28,11 @@ fn menu_config() {
             break;
         }
 
-        add_config_by_type(&env_name, choice).expect("cannot add config");
+        add_config_by_type(&env_name, choice);
     }
 }
 
-fn add_config_by_type(env_name: &str, typ: &str) -> anyhow::Result<()> {
+fn add_config_by_type(env_name: &str, typ: &str) {
     use interactive_parse::InteractiveParseObj;
 
     match typ {
@@ -57,8 +57,6 @@ fn add_config_by_type(env_name: &str, typ: &str) -> anyhow::Result<()> {
             .expect("cannot create secret"),
         &_ => println!("wrong type selected"),
     }
-
-    return Ok(());
 }
 
 fn menu_base() {
@@ -75,11 +73,11 @@ fn menu_base() {
             break;
         }
 
-        add_resource_by_type(&app_name, choice).expect("cannot add base resource");
+        add_resource_by_type(&app_name, choice);
     }
 }
 
-fn add_resource_by_type(app_name: &str, typ: &str) -> anyhow::Result<()> {
+fn add_resource_by_type(app_name: &str, typ: &str) {
     use interactive_parse::InteractiveParseObj;
 
     match typ {
@@ -105,8 +103,6 @@ fn add_resource_by_type(app_name: &str, typ: &str) -> anyhow::Result<()> {
     base::Kustomization::new(app_name)
         .render(app_name)
         .expect("cannot create kustomization.yaml");
-
-    return Ok(());
 }
 
 fn main() {
