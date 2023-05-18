@@ -18,10 +18,19 @@
 
 - rust
 
+*or*
+
+- nix
+- direnv
+
 
 ### 🚀 Getting started
 
-Clone the repository and run `cargo install --path .`. Then you should be able to call the wizard with `kustomize-quick-create`.
+Clone the repository and make sure the dependencies are installed. You either need rust installed or nix installed.
+With nix use either `nix-shell` or `direnv allow` up to your preferences.
+After dependencies are available run `cargo install --path .` to build install the tool. 
+
+Then you should be able to call the wizard with `kustomize-quick-create`.
 It will detect the kustomize deployment if it exists in the `kubernetes/` subdirectory of the present working dir.
 
 
@@ -36,7 +45,7 @@ Simply search for the template name in the code base and you should be able to f
 ### ❄️ Installation with nix
 
 
-Add the following code to your overlays. Then kustomize-quick-create can be installed from the `pkgs`.
+Add the following code to your overlays. Then kustomize-quick-create can be installed from `pkgs`.
 
 ```nix
 final: prev: {
