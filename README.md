@@ -33,6 +33,30 @@ Please keep in mind that you need to update the fields of the relating struct in
 Simply search for the template name in the code base and you should be able to find them.
 
 
+### ❄️ Installation with nix
+
+
+Add the following code to your overlays. Then kustomize-quick-create can be installed from the `pkgs`.
+
+```nix
+final: prev: {
+  kustomize-quick-create = prev.pkgs.rustPlatform.buildRustPackage rec {
+    version = "0.1.0";
+    pname = "kustomize-quick-create";
+
+    src = prev.fetchFromGitHub {
+      owner = "dj95";
+      repo = pname;
+      rev = "320d208c2660135ab2440a7d58db8859a35e29f7";
+      sha256 = "sha256-rvkbVPd5pWat/oZDoHOH4Pr3uqpkWY0ixTZGG0Kgvuk=";
+    };
+
+    cargoSha256 = "sha256-Ay96cF3H3l7/yzU5ejOrK96T9WoEaIujiEM285qxMFU=";
+  };
+}
+```
+
+
 ## 🤝 Contributing
 
 If you are missing features or find some annoying bugs please feel free to submit an issue or a bugfix within a pull request :)
