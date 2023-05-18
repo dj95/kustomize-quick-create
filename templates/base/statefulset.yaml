@@ -1,0 +1,57 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: '{{ name }}'
+  labels:
+    app: '{{ name }}'
+spec:
+  ports:
+    - port: {{ port }}
+      name: '{{ name }}'
+  selector:
+    app: '{{ name }}'
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: '{{ name }}'
+spec:
+  selector:
+    matchLabels:
+      app: '{{ name }}'
+  serviceName: '{{ name }}'
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: '{{ name }}'
+    spec:
+      containers:
+        - name: '{{ name }}'
+          image: '{{ container_image }}'
+          imagePullPolicy: Always
+          ports:
+            - containerPort: {{ port }}
+              name: '{{ name }}'
+          volumeMounts:
+            - name: volume
+              mountPath: /var/lib/mydata
+          resources:
+            limits:
+              cpu: 100m
+              ephemeral-storage: 512Mi
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              ephemeral-storage: 512Mi
+              memory: 256Mi
+  volumeClaimTemplates:
+    - metadata:
+        name: volume
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: "standard"
+        resources:
+          requests:
+            storage: 1G

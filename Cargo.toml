@@ -1,0 +1,15 @@
+[package]
+name = "kustomize-quick-create"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.71"
+handlebars = "4.3.6"
+inquire = "0.6.1"
+interactive-parse = "0.1.5"
+schemars = { version = "0.8.12", features = ["derive_json_schema"] }
+serde = { version = "1.0.163", features = ["derive"] }
+serde_json = "1.0.96"

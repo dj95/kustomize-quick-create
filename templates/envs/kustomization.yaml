@@ -1,0 +1,15 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: '{{ namespace }}'
+
+commonLabels:
+  env: '{{ env }}'
+
+images:
+- name: TBD
+  newTag: v0.0.1
+
+resources:
+  - '../../base/'

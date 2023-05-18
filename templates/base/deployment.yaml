@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: '{{ name }}'
+  name: '{{ name }}'
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: '{{ name }}'
+  template:
+    metadata:
+      labels:
+        app: '{{ name }}'
+    spec:
+      containers:
+        - env:
+            - name: APP_ENV
+              value: "prod"
+          image: '{{ container_image }}'
+          imagePullPolicy: Always
+          name: '{{ name }}'
+          ports:
+            - containerPort: {{ port }}
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: {{ port }}
+            periodSeconds: 30
+            timeoutSeconds: 5
+          resources:
+            limits:
+              cpu: 100m
+              ephemeral-storage: 512Mi
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              ephemeral-storage: 512Mi
+              memory: 256Mi

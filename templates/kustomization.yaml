@@ -1,0 +1,5 @@
+---
+resources:
+  {{#each files}}
+  - "{{ this }}"
+  {{/each}}
