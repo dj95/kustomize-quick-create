@@ -3,14 +3,14 @@
 <p align="center">
   A quick create wizard to create and modify opinionated kustomize deployments.
   <br><br>
+  <a href="https://github.com/dj95/kubernetes-quick-create/releases">
+    <img alt="latest version" src="https://img.shields.io/github/tag/dj95/kubernetes-quick-create.svg" />
+  </a>
+  <br><br>
   This tool should help to quickly create and build up kustomize deployments. It features a wizard, which
   will let you create the boilerplate configuration and underlying file structure. With a templateing
   engine the most important values are already set into the resources, such that only minor further tweaks
   should be required for getting the deployment up and running.
-  <br><br>
-  <a href="https://github.com/dj95/kubernetes-quick-create/releases">
-    <img alt="latest version" src="https://img.shields.io/github/tag/dj95/kubernetes-quick-create.svg" />
-  </a>
 </p>
 
 
