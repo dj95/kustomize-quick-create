@@ -25,6 +25,14 @@ Clone the repository and run `cargo install --path .`. Then you should be able t
 It will detect the kustomize deployment if it exists in the `kubernetes/` subdirectory of the present working dir.
 
 
+### 🧪 Customizing the templates
+
+Templates are stored in the *templates/* directory of this repository and statically compiled into the binary.
+Feel free to tinker around with the templates and customize them to your needs.
+Please keep in mind that you need to update the fields of the relating struct in *src/resources* if you change them.
+Simply search for the template name in the code base and you should be able to find them.
+
+
 ## 🤝 Contributing
 
 If you are missing features or find some annoying bugs please feel free to submit an issue or a bugfix within a pull request :)
