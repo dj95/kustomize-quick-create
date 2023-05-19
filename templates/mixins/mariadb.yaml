@@ -58,5 +58,5 @@ kind: Secret
 metadata:
   name: mariadb-secret
 type: Opaque
-strinData:
+stringData:
   mariadb-root-password: CHANGEME!
