@@ -8,7 +8,7 @@ mod render;
 mod resources;
 
 fn menu_config() {
-    let env_name = common::select_or_create_dir("kubernetes/envs").unwrap();
+    let env_name = common::select_or_create_dir("kubernetes/envs", "env").unwrap();
 
     loop {
         let choice = Select::new(
@@ -61,7 +61,7 @@ fn add_config_by_type(env_name: &str, typ: &str) {
 }
 
 fn menu_base() {
-    let app_name = common::select_or_create_dir("kubernetes/base").unwrap();
+    let app_name = common::select_or_create_dir("kubernetes/base", "app").unwrap();
 
     loop {
         let choice = Select::new(

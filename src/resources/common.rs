@@ -3,11 +3,11 @@ use std::{fs, path::Path};
 use anyhow::bail;
 use inquire::{Select, Text};
 
-pub fn select_or_create_dir(base_dir: &str) -> anyhow::Result<String> {
+pub fn select_or_create_dir(base_dir: &str, name: &str) -> anyhow::Result<String> {
     let mut env_names = list(base_dir);
     env_names.push("Create new".to_string());
 
-    let mut ans = match Select::new("Which env should be used?", env_names).prompt() {
+    let mut ans = match Select::new(&format!("Which {} should be used?", name), env_names).prompt() {
         Ok(ans) => ans,
         Err(e) => bail!(e),
     };
