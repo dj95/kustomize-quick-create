@@ -68,6 +68,12 @@ final: prev: {
 }
 ```
 
+If you just want to try it with nix, run the following command.
+
+```bash
+nix run 'github:dj95/kustomize-quick-create'
+```
+
 
 ## 🤝 Contributing
 

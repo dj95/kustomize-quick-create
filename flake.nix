@@ -15,11 +15,7 @@
       in rec {
         packages = {
           kustomize-quick-create = code.kustomize-quick-create;
-          all = pkgs.symlinkJoin {
-            name = "all";
-            paths = with code; [ kustomize-quick-create ];
-          };
-        default = packages.all;
+          default = packages.kustomize-quick-create;
         };
       }
     );
